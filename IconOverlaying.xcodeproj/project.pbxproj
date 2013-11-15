@@ -20,8 +20,6 @@
 		CD0694FD16E8D3F700983DF2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0694FC16E8D3F700983DF2 /* Default-568h@2x.png */; };
 		CD06950016E8D3F700983DF2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD0694FE16E8D3F700983DF2 /* MainStoryboard.storyboard */; };
 		CD06950316E8D3F700983DF2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD06950216E8D3F700983DF2 /* ViewController.m */; };
-		CD4BC4691732A201008C1C73 /* Icon_base.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4BC4671732A201008C1C73 /* Icon_base.png */; };
-		CD4BC46A1732A201008C1C73 /* Icon_base@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4BC4681732A201008C1C73 /* Icon_base@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,8 +41,6 @@
 		CD0694FF16E8D3F700983DF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		CD06950116E8D3F700983DF2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		CD06950216E8D3F700983DF2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		CD4BC4671732A201008C1C73 /* Icon_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_base.png; sourceTree = "<group>"; };
-		CD4BC4681732A201008C1C73 /* Icon_base@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon_base@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +89,6 @@
 			children = (
 				50F6256F1836878B00B927CA /* Icon.png */,
 				50F625701836878B00B927CA /* Icon@2x.png */,
-				CD4BC4671732A201008C1C73 /* Icon_base.png */,
-				CD4BC4681732A201008C1C73 /* Icon_base@2x.png */,
 				CD0694F516E8D3F700983DF2 /* AppDelegate.h */,
 				CD0694F616E8D3F700983DF2 /* AppDelegate.m */,
 				CD0694FE16E8D3F700983DF2 /* MainStoryboard.storyboard */,
@@ -178,8 +172,6 @@
 				CD0694FD16E8D3F700983DF2 /* Default-568h@2x.png in Resources */,
 				50F625711836878B00B927CA /* Icon.png in Resources */,
 				CD06950016E8D3F700983DF2 /* MainStoryboard.storyboard in Resources */,
-				CD4BC4691732A201008C1C73 /* Icon_base.png in Resources */,
-				CD4BC46A1732A201008C1C73 /* Icon_base@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +189,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "commit=`git rev-parse --short HEAD`\nbranch=`git rev-parse --abbrev-ref HEAD`\nversion=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${INFOPLIST_FILE}\"`\n\nfunction processIcon() {\n    export PATH=$PATH:/usr/local/bin\n    base_file=$1\n    base_path=`find \"${SRCROOT}/IconOverlaying\" -name $base_file`\n    \n    echo \"Processing $base_path\"\n    \n    if [[ ! -f ${base_path} || -z ${base_path} ]]; then\n    return;\n    fi\n    \n    target_file=`echo $base_file | sed \"s/_base//\"`\n    target_path=\"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/${target_file}\"\n    \n    if [ $CONFIGURATION = \"Release\" ]; then\n    cp \"${base_path}\" \"$target_path\"\n    return\n    fi\n    \n    width=`identify -format %w \"${base_path}\"`\n    \n    convert -background '#0008' -fill white -gravity center -size ${width}x40\\\n    caption:\"${version} ${branch} ${commit}\"\\\n    \"${base_path}\" +swap -gravity south -composite \"${target_path}\"\n    \n    echo \"Overlayed ${target_path}\"\n}\n\nprocessIcon \"Icon_base.png\"\nprocessIcon \"Icon_base@2x.png\"\nprocessIcon \"Icon-72_base.png\"\nprocessIcon \"Icon-72@2x_base.png\"\n";
+			shellScript = "commit=`git rev-parse --short HEAD`\nbranch=`git rev-parse --abbrev-ref HEAD`\nversion=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${INFOPLIST_FILE}\"`\n\nfunction processIcon() {\n    export PATH=$PATH:/usr/local/bin\n    base_file=$1\n    base_path=`find \"${SRCROOT}/IconOverlaying\" -name $base_file`\n    \n    echo \"Processing $base_path\"\n    \n    if [[ ! -f ${base_path} || -z ${base_path} ]]; then\n    return;\n    fi\n    \n    target_file=`echo $base_file | sed \"s/_base//\"`\n    target_file=$base_file\n    target_path=\"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/${target_file}\"\n    \n    if [ $CONFIGURATION = \"Release\" ]; then\n    cp \"${base_path}\" \"$target_path\"\n    return\n    fi\n    \n    width=`identify -format %w \"${base_path}\"`\n    \n    convert -background '#0008' -fill white -gravity center -size ${width}x40\\\n    caption:\"${version} ${branch} ${commit}\"\\\n    \"${base_path}\" +swap -gravity south -composite \"${target_path}\"\n    \n    echo \"Overlayed ${target_path}\"\n}\n\nprocessIcon \"Icon.png\"\nprocessIcon \"Icon@2x.png\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
