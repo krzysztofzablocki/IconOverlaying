@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50F625711836878B00B927CA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F6256F1836878B00B927CA /* Icon.png */; };
+		50F625721836878B00B927CA /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F625701836878B00B927CA /* Icon@2x.png */; };
 		CD0694E716E8D3F700983DF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0694E616E8D3F700983DF2 /* UIKit.framework */; };
 		CD0694E916E8D3F700983DF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0694E816E8D3F700983DF2 /* Foundation.framework */; };
 		CD0694EB16E8D3F700983DF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0694EA16E8D3F700983DF2 /* CoreGraphics.framework */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		50F6256F1836878B00B927CA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		50F625701836878B00B927CA /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		CD0694E316E8D3F700983DF2 /* IconOverlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IconOverlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD0694E616E8D3F700983DF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CD0694E816E8D3F700983DF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -87,6 +91,8 @@
 		CD0694EC16E8D3F700983DF2 /* IconOverlaying */ = {
 			isa = PBXGroup;
 			children = (
+				50F6256F1836878B00B927CA /* Icon.png */,
+				50F625701836878B00B927CA /* Icon@2x.png */,
 				CD4BC4671732A201008C1C73 /* Icon_base.png */,
 				CD4BC4681732A201008C1C73 /* Icon_base@2x.png */,
 				CD0694F516E8D3F700983DF2 /* AppDelegate.h */,
@@ -166,9 +172,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD0694F116E8D3F700983DF2 /* InfoPlist.strings in Resources */,
+				50F625721836878B00B927CA /* Icon@2x.png in Resources */,
 				CD0694F916E8D3F700983DF2 /* Default.png in Resources */,
 				CD0694FB16E8D3F700983DF2 /* Default@2x.png in Resources */,
 				CD0694FD16E8D3F700983DF2 /* Default-568h@2x.png in Resources */,
+				50F625711836878B00B927CA /* Icon.png in Resources */,
 				CD06950016E8D3F700983DF2 /* MainStoryboard.storyboard in Resources */,
 				CD4BC4691732A201008C1C73 /* Icon_base.png in Resources */,
 				CD4BC46A1732A201008C1C73 /* Icon_base@2x.png in Resources */,
@@ -189,7 +197,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "commit=`git rev-parse --short HEAD`\nbranch=`git rev-parse --abbrev-ref HEAD`\nversion=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${INFOPLIST_FILE}\"`\n\nfunction processIcon() {\n    export PATH=$PATH:/usr/local/bin\n    base_file=$1\n    base_path=`find \"${SRCROOT}\" -name $base_file`\n    \n    if [[ ! -f q${base_path} || -z ${base_path} ]]; then\n    return;\n    fi\n    \n    target_file=`echo $base_file | sed \"s/_base//\"`\n    target_path=\"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/${target_file}\"\n    \n    if [ $CONFIGURATION = \"Release\" ]; then\n    cp \"${base_file}\" \"$target_path\"\n    return\n    fi\n    \n    width=`identify -format %w \"${base_path}\"`\n    \n    convert -background '#0008' -fill white -gravity center -size ${width}x40\\\n    caption:\"${version} ${branch} ${commit}\"\\\n    \"${base_path}\" +swap -gravity south -composite \"${target_path}\"\n}\n\nprocessIcon \"Icon_base.png\"\nprocessIcon \"Icon@2x_base.png\"\nprocessIcon \"Icon-72_base.png\"\nprocessIcon \"Icon-72@2x_base.png\"\n";
+			shellScript = "commit=`git rev-parse --short HEAD`\nbranch=`git rev-parse --abbrev-ref HEAD`\nversion=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${INFOPLIST_FILE}\"`\n\nfunction processIcon() {\n    export PATH=$PATH:/usr/local/bin\n    base_file=$1\n    base_path=`find \"${SRCROOT}/IconOverlaying\" -name $base_file`\n    \n    echo \"Processing $base_path\"\n    \n    if [[ ! -f ${base_path} || -z ${base_path} ]]; then\n    return;\n    fi\n    \n    target_file=`echo $base_file | sed \"s/_base//\"`\n    target_path=\"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/${target_file}\"\n    \n    if [ $CONFIGURATION = \"Release\" ]; then\n    cp \"${base_path}\" \"$target_path\"\n    return\n    fi\n    \n    width=`identify -format %w \"${base_path}\"`\n    \n    convert -background '#0008' -fill white -gravity center -size ${width}x40\\\n    caption:\"${version} ${branch} ${commit}\"\\\n    \"${base_path}\" +swap -gravity south -composite \"${target_path}\"\n    \n    echo \"Overlayed ${target_path}\"\n}\n\nprocessIcon \"Icon_base.png\"\nprocessIcon \"Icon_base@2x.png\"\nprocessIcon \"Icon-72_base.png\"\nprocessIcon \"Icon-72@2x_base.png\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
