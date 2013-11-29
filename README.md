@@ -9,7 +9,7 @@ Overlay build information on iOS application icon. These can include application
 
 **To**
 
-![image](http://f.cl.ly/items/3t0c390F3O2M1S1H0U1F/AppIcon60x60@2x.png)
+![image](http://f.cl.ly/items/0q441G253H1P2a0T182r/AppIcon60x60@2x.png)
 
 (*) Requires [ImageMagick](http://www.imagemagick.org)
 
