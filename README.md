@@ -1,7 +1,7 @@
 IconOverlaying
 ==============
 
-Overlay build information on iOS application icon. These can include application version, build count, branch name and commit, however the exact contents can be tweaked editing the script. The caption is layed up on a blurred portion of the icon.
+Overlay build information on iOS application icon. These can include application version, build count, branch name and commit, however the exact contents can be tweaked editing the script. The caption is layed up on a blurred portion of the icon. A warning band is added on upper right corner to make the beta status of the app more recognizable.
 
 **From**
 
@@ -9,7 +9,7 @@ Overlay build information on iOS application icon. These can include application
 
 **To**
 
-![image](http://f.cl.ly/items/3D2q252w1Q2w1B2E3d3u/AppIcon60x60@2x.png)
+![image](http://f.cl.ly/items/3t0c390F3O2M1S1H0U1F/AppIcon60x60@2x.png)
 
 (*) Requires [ImageMagick](http://www.imagemagick.org)
 
