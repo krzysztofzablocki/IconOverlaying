@@ -1,11 +1,13 @@
-convertPath=`which convert`    
+export PATH=/opt/local/bin/:/opt/local/sbin:$PATH:/usr/local/bin:
+
+convertPath=`which convert`
+echo ${convertPath}
 if [[ ! -f ${convertPath} || -z ${convertPath} ]]; then
     echo "WARNING: Skipping Icon versioning, you need to install ImageMagick and ghostscript (fonts) first, you can use brew to simplify process:
     brew install imagemagick
-    brew install ghostscript";
+    brew install ghostscript"
     exit 0;
 fi
-
 
 commit=`git rev-parse --short HEAD`
 branch=`git rev-parse --abbrev-ref HEAD`
@@ -27,7 +29,6 @@ shopt -u extglob
 caption="${version} ($build_num) ${branch} ${commit}"
 echo $caption
 function processIcon() {
-    export PATH=/opt/local/bin/:/opt/local/sbin:$PATH:/usr/local/bin:
     base_file=$1
     base_path=`find "${SRCROOT}/IconOverlaying" -name $base_file`
     
@@ -61,7 +62,6 @@ function processIcon() {
     convert /tmp/blurred.png -gamma 0 -fill white -draw "rectangle 0,$band_position,$width,$height" /tmp/mask.png
     convert -size ${width}x${band_height} xc:none -fill 'rgba(0,0,0,0.2)' -draw "rectangle 0,0,$width,$band_height" /tmp/labels-base.png
     convert -background none -size ${width}x${band_height} -fill white -gravity center -gravity South caption:"$caption" /tmp/labels.png
-    #convert -background none -size ${width}x${band_height} -interline-spacing 4 -pointsize $point_size -gravity center -fill white caption:"$caption" /tmp/labels.png
     
     convert $base_path /tmp/blurred.png /tmp/mask.png -composite /tmp/temp.png
     
@@ -82,5 +82,12 @@ function processIcon() {
     echo "Overlayed ${target_path}"
 }
 
-processIcon "Icon.png"
-processIcon "Icon@2x.png"
+icon_count=`/usr/libexec/PlistBuddy -c "Print CFBundleIcons:CFBundlePrimaryIcon:CFBundleIconFiles" "${INFOPLIST_FILE}" | wc -l`
+last_icon_index=$((${icon_count} - 2))
+
+i=0
+while [  $i -lt $last_icon_index ]; do
+    icon=`/usr/libexec/PlistBuddy -c "Print CFBundleIcons:CFBundlePrimaryIcon:CFBundleIconFiles:$i" "${INFOPLIST_FILE}"`
+    processIcon $icon
+    let i=i+1
+done
