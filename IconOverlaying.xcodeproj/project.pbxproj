@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		50F625711836878B00B927CA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F6256F1836878B00B927CA /* Icon.png */; };
-		50F625721836878B00B927CA /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F625701836878B00B927CA /* Icon@2x.png */; };
+		9CB1235418D9DF260034E8DA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CB1235318D9DF260034E8DA /* Images.xcassets */; };
 		CD0694E716E8D3F700983DF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0694E616E8D3F700983DF2 /* UIKit.framework */; };
 		CD0694E916E8D3F700983DF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0694E816E8D3F700983DF2 /* Foundation.framework */; };
 		CD0694EB16E8D3F700983DF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0694EA16E8D3F700983DF2 /* CoreGraphics.framework */; };
@@ -23,8 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		50F6256F1836878B00B927CA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		50F625701836878B00B927CA /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		9CB1235318D9DF260034E8DA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CD0694E316E8D3F700983DF2 /* IconOverlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IconOverlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD0694E616E8D3F700983DF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CD0694E816E8D3F700983DF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -87,14 +85,13 @@
 		CD0694EC16E8D3F700983DF2 /* IconOverlaying */ = {
 			isa = PBXGroup;
 			children = (
-				50F6256F1836878B00B927CA /* Icon.png */,
-				50F625701836878B00B927CA /* Icon@2x.png */,
 				CD0694F516E8D3F700983DF2 /* AppDelegate.h */,
 				CD0694F616E8D3F700983DF2 /* AppDelegate.m */,
 				CD0694FE16E8D3F700983DF2 /* MainStoryboard.storyboard */,
 				CD06950116E8D3F700983DF2 /* ViewController.h */,
 				CD06950216E8D3F700983DF2 /* ViewController.m */,
 				CD0694ED16E8D3F700983DF2 /* Supporting Files */,
+				9CB1235318D9DF260034E8DA /* Images.xcassets */,
 			);
 			path = IconOverlaying;
 			sourceTree = "<group>";
@@ -120,10 +117,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD06950616E8D3F700983DF2 /* Build configuration list for PBXNativeTarget "IconOverlaying" */;
 			buildPhases = (
-				CD06950D16E8D47600983DF2 /* ShellScript */,
 				CD0694DF16E8D3F700983DF2 /* Sources */,
 				CD0694E016E8D3F700983DF2 /* Frameworks */,
 				CD0694E116E8D3F700983DF2 /* Resources */,
+				CD06950D16E8D47600983DF2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -166,11 +163,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD0694F116E8D3F700983DF2 /* InfoPlist.strings in Resources */,
-				50F625721836878B00B927CA /* Icon@2x.png in Resources */,
+				9CB1235418D9DF260034E8DA /* Images.xcassets in Resources */,
 				CD0694F916E8D3F700983DF2 /* Default.png in Resources */,
 				CD0694FB16E8D3F700983DF2 /* Default@2x.png in Resources */,
 				CD0694FD16E8D3F700983DF2 /* Default-568h@2x.png in Resources */,
-				50F625711836878B00B927CA /* Icon.png in Resources */,
 				CD06950016E8D3F700983DF2 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +281,8 @@
 		CD06950716E8D3F700983DF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMPRESS_PNG_FILES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IconOverlaying/IconOverlaying-Prefix.pch";
 				INFOPLIST_FILE = "IconOverlaying/IconOverlaying-Info.plist";
@@ -296,6 +294,7 @@
 		CD06950816E8D3F700983DF2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IconOverlaying/IconOverlaying-Prefix.pch";
 				INFOPLIST_FILE = "IconOverlaying/IconOverlaying-Info.plist";
