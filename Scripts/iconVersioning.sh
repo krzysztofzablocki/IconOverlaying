@@ -31,6 +31,7 @@ echo $caption
 
 function processIcon() {
     base_file=$1
+
     cd "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
     base_path=`find . -name ${base_file}`
 
@@ -48,6 +49,24 @@ function processIcon() {
     return
     fi
 
+    echo "Reverting optimized PNG to normal"
+    # form a normalized png filename
+    base_tmp_normalizedFileName="${base_file%.*}-normalized.${base_file##*.}"
+    base_tmp_path=`dirname $base_path`
+    base_tmp_normalizedFilePath="${base_tmp_path}/${base_tmp_normalizedFileName}"
+    
+    # Normalize
+    echo "xcrun -sdk iphoneos pngcrush -revert-iphone-optimizations -q $base_path $base_tmp_normalizedFilePath"
+    xcrun -sdk iphoneos pngcrush -revert-iphone-optimizations -q "$base_path" "$base_tmp_normalizedFilePath"
+
+    # Remove pngcrush png
+    echo "Removing pngcrushed png file at $base_path"
+    rm "$base_path"
+
+    # Rename normalized png's filename to original one
+    echo "Moving normalized png file to original one"
+    mv "$base_tmp_normalizedFilePath" "$base_path"
+
     width=`identify -format %w ${base_path}`
     height=`identify -format %h ${base_path}`
     band_height=$((($height * 45) / 100))
@@ -64,7 +83,7 @@ function processIcon() {
     convert /tmp/blurred.png -gamma 0 -fill white -draw "rectangle 0,$band_position,$width,$height" /tmp/mask.png
     convert -size ${width}x${band_height} xc:none -fill 'rgba(0,0,0,0.2)' -draw "rectangle 0,0,$width,$band_height" /tmp/labels-base.png
     convert -background none -size ${width}x${band_height} -fill white -gravity center -gravity South caption:"$caption" /tmp/labels.png
-
+    
     convert $base_path /tmp/blurred.png /tmp/mask.png -composite /tmp/temp.png
 
     rm /tmp/blurred.png
@@ -74,7 +93,7 @@ function processIcon() {
     # compose final image
     #
     filename=New$base_file
-    convert /tmp/temp.png /tmp/labels-base.png -geometry +0+$band_position -composite /tmp/labels.png -geometry +0+$text_position -geometry +${w}-${h} -composite $target_path
+    convert /tmp/temp.png /tmp/labels-base.png -geometry +0+$band_position -composite /tmp/labels.png -geometry +0+$text_position -geometry +${w}-${h} -composite "$target_path"
 
     # clean up
     rm /tmp/temp.png
