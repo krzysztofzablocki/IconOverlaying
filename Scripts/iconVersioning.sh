@@ -69,10 +69,10 @@ function processIcon() {
 
     width=`identify -format %w ${base_path}`
     height=`identify -format %h ${base_path}`
-    band_height=$((($height * 45) / 100))
+    band_height=$((($height * 47) / 100))
     band_position=$(($height - $band_height))
-    text_position=$(($band_position - 5))
-    point_size=$(((15 * $width) / 100))
+    text_position=$(($band_position - 3))
+    point_size=$(((13 * $width) / 100))
 
     echo "Image dimensions ($width x $height) - band height $band_height @ $band_position - point size $point_size"
 
@@ -82,7 +82,7 @@ function processIcon() {
     convert $base_path -blur 10x8 /tmp/blurred.png
     convert /tmp/blurred.png -gamma 0 -fill white -draw "rectangle 0,$band_position,$width,$height" /tmp/mask.png
     convert -size ${width}x${band_height} xc:none -fill 'rgba(0,0,0,0.2)' -draw "rectangle 0,0,$width,$band_height" /tmp/labels-base.png
-    convert -background none -size ${width}x${band_height} -fill white -gravity center -gravity South caption:"$caption" /tmp/labels.png
+    convert -background none -size ${width}x${band_height} -pointsize $point_size -fill white -gravity center -gravity South caption:"$caption" /tmp/labels.png
     
     convert $base_path /tmp/blurred.png /tmp/mask.png -composite /tmp/temp.png
 
@@ -119,3 +119,10 @@ while [  $i -lt $last_icon_index ]; do
     fi
     let i=i+1
 done
+
+# Workaround to fix issue#16 to use wildcard * to actually find the file
+# Only 72x72 and 76x76 that we need for ipad app icons
+processIcon "AppIcon72x72~ipad*"
+processIcon "AppIcon72x72@2x~ipad*"
+processIcon "AppIcon76x76~ipad*"
+processIcon "AppIcon76x76@2x~ipad*"
