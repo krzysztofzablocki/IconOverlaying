@@ -26,7 +26,7 @@ build_num=`git log --oneline | wc -l`
 shopt -s extglob
 build_num="${build_num##*( )}"
 shopt -u extglob
-caption="${version} ($build_num) ${branch} ${commit}"
+caption="${version} ($build_num)\n${branch}\n${commit}"
 echo $caption
 
 function processIcon() {
