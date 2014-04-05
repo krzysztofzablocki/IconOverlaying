@@ -313,7 +313,7 @@
 				CD06950516E8D3F700983DF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		CD06950616E8D3F700983DF2 /* Build configuration list for PBXNativeTarget "IconOverlaying" */ = {
 			isa = XCConfigurationList;
@@ -322,7 +322,7 @@
 				CD06950816E8D3F700983DF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
