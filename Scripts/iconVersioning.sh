@@ -12,7 +12,7 @@ fi
 commit=`git rev-parse --short HEAD`
 branch=`git rev-parse --abbrev-ref HEAD`
 version=`/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${INFOPLIST_FILE}"`
-build_num=`git log --oneline | wc -l`
+build_num=`git rev-list HEAD --count`
 
 #SRCROOT=..
 #CONFIGURATION_BUILD_DIR=.
@@ -46,7 +46,7 @@ function processIcon() {
 
     if [ $CONFIGURATION = "Release" ]; then
     cp "${base_path}" "$target_path"
-    return
+    return 0;
     fi
 
     echo "Reverting optimized PNG to normal"
