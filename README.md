@@ -1,4 +1,4 @@
-![](http://github.com/krzysztofzablocki/KZBootstrap/Screenshots/Configurations.png?raw=true)
+![](https://raw.githubusercontent.com/krzysztofzablocki/KZBootstrap/master/Screenshots/Configurations.png?raw=true)
 ### Overlay build information on top of your icon
 
 At NSConference #5 Evan Doll showed their great Flipboard setup for iOS applications, adding version and commit on top of your icon. 
