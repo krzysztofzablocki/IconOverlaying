@@ -8,4 +8,4 @@ Unfortunately for some reason, they only showed it, but didn't share that with c
 [Follow me on twitter](http://twitter.com/merowing_)
 
 
-## This project has now been integrated as part of [KZBootstrap, a powerful project setup aimed at high quality code.](http://github.com/krzysztofzablocki/KZBootstrap)
+## This project is now integrated with [KZBootstrap, a powerful project setup aimed at high quality code.](http://github.com/krzysztofzablocki/KZBootstrap)
