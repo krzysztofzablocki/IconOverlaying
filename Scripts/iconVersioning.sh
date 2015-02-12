@@ -10,17 +10,16 @@ if [[ ! -f ${convertPath} || -z ${convertPath} ]]; then
 exit 0;
 fi
 
-version=`/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${INFOPLIST_FILE}"`
+version=`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${INFOPLIST_FILE}"`
+build_num=`/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${INFOPLIST_FILE}"`
 
 # Check if we are under a Git or Hg repo
 if [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1; then
     commit=`git rev-parse --short HEAD`
     branch=`git rev-parse --abbrev-ref HEAD`
-    build_num=`git rev-list HEAD --count`
 else
     commit=`hg identify -i`
     branch=`hg identify -b`
-    build_num=`hg identify --num`
 fi;
 
 #SRCROOT=..
