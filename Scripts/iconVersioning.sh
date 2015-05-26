@@ -2,11 +2,29 @@
 export PATH=/opt/local/bin/:/opt/local/sbin:$PATH:/usr/local/bin:
 
 convertPath=`which convert`
-echo ${convertPath}
+gsPath=`which gs`
+
 if [[ ! -f ${convertPath} || -z ${convertPath} ]]; then
-  echo "WARNING: Skipping Icon versioning, you need to install ImageMagick and ghostscript (fonts) first, you can use brew to simplify process:
-  brew install imagemagick
-  brew install ghostscript"
+  convertValidation=true;
+else
+  convertValidation=false;
+fi
+
+if [[ ! -f ${gsPath} || -z ${gsPath} ]]; then
+  gsValidation=true;
+else
+  gsValidation=false;
+fi
+
+if [[ "$convertValidation" = true || "$gsValidation" = true ]]; then
+  echo "WARNING: Skipping Icon versioning, you need to install ImageMagick and ghostscript (fonts) first, you can use brew to simplify process:"
+
+  if [[ "$convertValidation" = true ]]; then
+    echo "brew install imagemagick"
+  fi
+  if [[ "$gsValidation" = true ]]; then
+    echo "brew install ghostscript"
+  fi
 exit 0;
 fi
 
