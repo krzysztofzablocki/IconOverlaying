@@ -28,8 +28,8 @@ if [[ "$convertValidation" = true || "$gsValidation" = true ]]; then
 exit 0;
 fi
 
-version=`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${INFOPLIST_FILE}"`
-build_num=`/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${INFOPLIST_FILE}"`
+version=`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${CONFIGURATION_BUILD_DIR}/${INFOPLIST_PATH}"`
+build_num=`/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${CONFIGURATION_BUILD_DIR}/${INFOPLIST_PATH}"`
 
 # Check if we are under a Git or Hg repo
 if [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1; then
