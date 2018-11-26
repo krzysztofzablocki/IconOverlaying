@@ -25,7 +25,8 @@ if [[ "$convertValidation" = true || "$gsValidation" = true ]]; then
   if [[ "$gsValidation" = true ]]; then
     echo "brew install ghostscript"
   fi
-exit 0;
+
+  exit 0
 fi
 
 version=`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${CONFIGURATION_BUILD_DIR}/${INFOPLIST_PATH}"`
@@ -55,7 +56,24 @@ shopt -u extglob
 caption="${version} ($build_num)\n${branch}\n${commit}"
 echo $caption
 
-function abspath() { pushd . > /dev/null; if [ -d "$1" ]; then cd "$1"; dirs -l +0; else cd "`dirname \"$1\"`"; cur_dir=`dirs -l +0`; if [ "$cur_dir" == "/" ]; then echo "$cur_dir`basename \"$1\"`"; else echo "$cur_dir/`basename \"$1\"`"; fi; fi; popd > /dev/null; }
+function abspath() {
+    pushd . > /dev/null
+
+    if [ -d "$1" ]; then
+        cd "$1"; dirs -l +0
+    else
+        cd "`dirname \"$1\"`"
+        cur_dir=`dirs -l +0`
+
+        if [ "$cur_dir" == "/" ]; then
+            echo "$cur_dir`basename \"$1\"`"
+        else
+            echo "$cur_dir/`basename \"$1\"`"
+        fi
+    fi
+
+    popd > /dev/null
+}
 
 function processIcon() {
     base_file=$1
@@ -157,6 +175,7 @@ while [  $i -lt $last_icon_index ]; do
     processIcon "${icon}~ipad.png"
     processIcon "${icon}@2x~ipad.png"
   fi
+
   let i=i+1
 done
 
