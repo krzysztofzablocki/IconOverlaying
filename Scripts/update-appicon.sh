@@ -1,5 +1,7 @@
 #!/bin/sh
 
+directory="$1"
+
 convert=`which convert`
 gs=`which gs`
 
@@ -43,13 +45,6 @@ function process_image() {
         -composite  "$file"
 }
 
-
-counter=0
-while [ $counter -lt ${SCRIPT_INPUT_FILE_COUNT} ]; do
-    tmp="SCRIPT_INPUT_FILE_$counter"
-    file=${!tmp}
-
-    process_image $file
-
-    let counter=counter+1
+for file in `find "$directory" -name "*.png" -type f`; do
+    process_image "$file"
 done

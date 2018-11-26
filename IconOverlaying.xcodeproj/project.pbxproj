@@ -194,7 +194,6 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/IconOverlaying/Images.xcassets/AppIcon.appiconset/Icon-iOS7@2x.png",
 			);
 			name = "Reset AppIcon";
 			outputFileListPaths = (
@@ -203,8 +202,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "\"$SRCROOT/Scripts/reset-appicon.sh\" \"$SRCROOT/IconOverlaying/Images.xcassets/AppIcon.appiconset\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CD06950D16E8D47600983DF2 /* Update AppIcon */ = {
@@ -213,14 +211,13 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/IconOverlaying/Images.xcassets/AppIcon.appiconset/Icon-iOS7@2x.png",
 			);
 			name = "Update AppIcon";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Scripts/update-appicon.sh\"\n";
+			shellScript = "\"$SRCROOT/Scripts/update-appicon.sh\" \"$SRCROOT/IconOverlaying/Images.xcassets/AppIcon.appiconset\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
