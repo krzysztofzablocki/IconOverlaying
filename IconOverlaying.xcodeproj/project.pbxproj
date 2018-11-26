@@ -24,6 +24,7 @@
 		2D00C94521AC0F10007A2B61 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		2D00C94821AC1066007A2B61 /* NSBundle+Info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Info.h"; sourceTree = "<group>"; };
 		2D00C94921AC1066007A2B61 /* NSBundle+Info.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Info.m"; sourceTree = "<group>"; };
+		2D00C95121AC15C7007A2B61 /* iconVersioning.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = iconVersioning.sh; sourceTree = "<group>"; };
 		9CB1235318D9DF260034E8DA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CD0694E316E8D3F700983DF2 /* IconOverlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IconOverlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD0694E616E8D3F700983DF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -54,11 +55,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D00C95021AC15C7007A2B61 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				2D00C95121AC15C7007A2B61 /* iconVersioning.sh */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
 		CD0694DA16E8D3F700983DF2 = {
 			isa = PBXGroup;
 			children = (
 				CD0694EC16E8D3F700983DF2 /* IconOverlaying */,
 				CD0694E516E8D3F700983DF2 /* Frameworks */,
+				2D00C95021AC15C7007A2B61 /* Scripts */,
 				CD0694E416E8D3F700983DF2 /* Products */,
 			);
 			sourceTree = "<group>";
