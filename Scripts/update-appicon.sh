@@ -27,9 +27,9 @@ fi
 version=`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${CONFIGURATION_BUILD_DIR}/${INFOPLIST_PATH}"`
 build=`/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${CONFIGURATION_BUILD_DIR}/${INFOPLIST_PATH}"`
 
-
 function process_image() {
     local file="$1"
+    local width=`identify -format %w "$file"`
 
     echo "Overlaying ${file}"
 
@@ -37,7 +37,8 @@ function process_image() {
         -background '#0008' \
         -fill white \
         -gravity center \
-        -size ${width}x40 \
+        -size ${width}x50 \
+        -pointsize 23 \
         caption:"${version}\n${build}" \
         "$file" \
         +swap \
