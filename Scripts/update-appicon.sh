@@ -24,8 +24,9 @@ if is_missing "$convert" || is_missing "$gs"; then
 fi
 
 
-version=`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${CONFIGURATION_BUILD_DIR}/${INFOPLIST_PATH}"`
-build=`/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${CONFIGURATION_BUILD_DIR}/${INFOPLIST_PATH}"`
+version=`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "$SRCROOT/$INFOPLIST_FILE"`
+build=`/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "$SRCROOT/$INFOPLIST_FILE"`
+
 
 function process_image() {
     local file="$1"
