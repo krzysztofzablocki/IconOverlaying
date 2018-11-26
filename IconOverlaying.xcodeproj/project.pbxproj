@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D00C94621AC0F10007A2B61 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D00C94521AC0F10007A2B61 /* Launch.storyboard */; };
 		2D00C94A21AC1066007A2B61 /* NSBundle+Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D00C94921AC1066007A2B61 /* NSBundle+Info.m */; };
+		2D00C95521AC340C007A2B61 /* reset-appicon.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2D00C95421AC340C007A2B61 /* reset-appicon.sh */; };
 		9CB1235418D9DF260034E8DA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CB1235318D9DF260034E8DA /* Images.xcassets */; };
 		CD0694E716E8D3F700983DF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0694E616E8D3F700983DF2 /* UIKit.framework */; };
 		CD0694E916E8D3F700983DF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0694E816E8D3F700983DF2 /* Foundation.framework */; };
@@ -24,7 +25,8 @@
 		2D00C94521AC0F10007A2B61 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		2D00C94821AC1066007A2B61 /* NSBundle+Info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Info.h"; sourceTree = "<group>"; };
 		2D00C94921AC1066007A2B61 /* NSBundle+Info.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Info.m"; sourceTree = "<group>"; };
-		2D00C95121AC15C7007A2B61 /* iconVersioning.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = iconVersioning.sh; sourceTree = "<group>"; };
+		2D00C95121AC15C7007A2B61 /* update-appicon.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "update-appicon.sh"; sourceTree = "<group>"; };
+		2D00C95421AC340C007A2B61 /* reset-appicon.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "reset-appicon.sh"; sourceTree = "<group>"; };
 		9CB1235318D9DF260034E8DA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CD0694E316E8D3F700983DF2 /* IconOverlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IconOverlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD0694E616E8D3F700983DF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -58,7 +60,8 @@
 		2D00C95021AC15C7007A2B61 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				2D00C95121AC15C7007A2B61 /* iconVersioning.sh */,
+				2D00C95121AC15C7007A2B61 /* update-appicon.sh */,
+				2D00C95421AC340C007A2B61 /* reset-appicon.sh */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -128,8 +131,9 @@
 			buildPhases = (
 				CD0694DF16E8D3F700983DF2 /* Sources */,
 				CD0694E016E8D3F700983DF2 /* Frameworks */,
+				CD06950D16E8D47600983DF2 /* Update AppIcon */,
 				CD0694E116E8D3F700983DF2 /* Resources */,
-				CD06950D16E8D47600983DF2 /* ShellScript */,
+				2D00C95321AC33CF007A2B61 /* Reset AppIcon */,
 			);
 			buildRules = (
 			);
@@ -174,6 +178,7 @@
 				CD0694F116E8D3F700983DF2 /* InfoPlist.strings in Resources */,
 				9CB1235418D9DF260034E8DA /* Images.xcassets in Resources */,
 				CD06950016E8D3F700983DF2 /* MainStoryboard.storyboard in Resources */,
+				2D00C95521AC340C007A2B61 /* reset-appicon.sh in Resources */,
 				2D00C94621AC0F10007A2B61 /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,18 +186,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		CD06950D16E8D47600983DF2 /* ShellScript */ = {
+		2D00C95321AC33CF007A2B61 /* Reset AppIcon */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
+				"$(SRCROOT)/IconOverlaying/Images.xcassets/AppIcon.appiconset/Icon-iOS7@2x.png",
+			);
+			name = "Reset AppIcon";
+			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Scripts/iconVersioning.sh\"";
+			shellScript = "
+";
+			showEnvVarsInLog = 0;
+		};
+		CD06950D16E8D47600983DF2 /* Update AppIcon */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/IconOverlaying/Images.xcassets/AppIcon.appiconset/Icon-iOS7@2x.png",
+			);
+			name = "Update AppIcon";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/update-appicon.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
