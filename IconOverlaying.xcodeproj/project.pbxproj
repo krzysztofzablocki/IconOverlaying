@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D00C94621AC0F10007A2B61 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D00C94521AC0F10007A2B61 /* Launch.storyboard */; };
+		2D00C94A21AC1066007A2B61 /* NSBundle+Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D00C94921AC1066007A2B61 /* NSBundle+Info.m */; };
 		9CB1235418D9DF260034E8DA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CB1235318D9DF260034E8DA /* Images.xcassets */; };
 		CD0694E716E8D3F700983DF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0694E616E8D3F700983DF2 /* UIKit.framework */; };
 		CD0694E916E8D3F700983DF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0694E816E8D3F700983DF2 /* Foundation.framework */; };
@@ -21,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		2D00C94521AC0F10007A2B61 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		2D00C94821AC1066007A2B61 /* NSBundle+Info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Info.h"; sourceTree = "<group>"; };
+		2D00C94921AC1066007A2B61 /* NSBundle+Info.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Info.m"; sourceTree = "<group>"; };
 		9CB1235318D9DF260034E8DA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CD0694E316E8D3F700983DF2 /* IconOverlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IconOverlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD0694E616E8D3F700983DF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -87,6 +90,8 @@
 				2D00C94521AC0F10007A2B61 /* Launch.storyboard */,
 				CD06950116E8D3F700983DF2 /* ViewController.h */,
 				CD06950216E8D3F700983DF2 /* ViewController.m */,
+				2D00C94821AC1066007A2B61 /* NSBundle+Info.h */,
+				2D00C94921AC1066007A2B61 /* NSBundle+Info.m */,
 				CD0694ED16E8D3F700983DF2 /* Supporting Files */,
 				9CB1235318D9DF260034E8DA /* Images.xcassets */,
 			);
@@ -187,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD0694F316E8D3F700983DF2 /* main.m in Sources */,
+				2D00C94A21AC1066007A2B61 /* NSBundle+Info.m in Sources */,
 				CD0694F716E8D3F700983DF2 /* AppDelegate.m in Sources */,
 				CD06950316E8D3F700983DF2 /* ViewController.m in Sources */,
 			);
